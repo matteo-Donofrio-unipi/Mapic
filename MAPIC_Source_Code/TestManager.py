@@ -12,7 +12,7 @@ from tslearn.shapelets import LearningShapelets, grabocka_params_to_shapelet_siz
 
 
 #datasetNames = 'GunPoint,ItalyPowerDemand,ArrowHead,ECG200,ECG5000,PhalangesOutlinesCorrect'
-def executeMAPIC(useValidationSet,usePercentageTrainingSet,datasetName,nameFile,percentage):#,initialWS,candidate):
+def executeMAPIC(useValidationSet,usePercentageTrainingSet,datasetName,nameFile):#,initialWS,candidate):
 
     #INPUT: Parameters for TSCMP algorithm
 
@@ -22,11 +22,11 @@ def executeMAPIC(useValidationSet,usePercentageTrainingSet,datasetName,nameFile,
     second = True  # Fittin of the Decision Tree
     third = True  # Generation & Computation of the testing dataset
     quarter = True  # Predict and show scores
-    fifth=False   # Plot some/all classified instances
-    sixth = False  # Plot of the choosen shapelet
+    fifth=True   # Plot some/all classified instances
+    sixth = True  # Plot of the choosen shapelet
 
 
-    PercentageTrainingSet = percentage # variable percentage of the training set
+    PercentageTrainingSet = 1 # variable percentage of the training set
     PercentageValidationSet = 0.3  # percentage of the training set chosen as validation set
     writeOnCsv = True
 
@@ -180,9 +180,11 @@ def executeMAPIC(useValidationSet,usePercentageTrainingSet,datasetName,nameFile,
         #fit the Decision Tree
         tree.fit(dfForDTree,verbose=False)
         TrainTime=time.time() - start_timeTrain #take the training phase time
+
+        print(tree.Root)
+
         if(verbose==True):
             print(tree.attributeList)
-            print(tree.Root)
             tree.printAll(tree.Root)
 
         if(len(tree.SseList)>0):
@@ -306,10 +308,11 @@ def executeMAPIC(useValidationSet,usePercentageTrainingSet,datasetName,nameFile,
 
             mp, mot, motif_dist, dis =tupla
 
-            print('IdTs:  %d' % idTs)
-            print('IDCandidate:  %d' % idCandidate)
-            print('starting position:  %d ' % sp)
-            print('M/D: %d ' % md)
+            if(verbose==True):
+                print('IdTs:  %d' % idTs)
+                print('IDCandidate:  %d' % idCandidate)
+                print('starting position:  %d ' % sp)
+                print('M/D: %d ' % md)
 
             plot_all(ts, mp, mot, motif_dist, dis, sp, md,tree.window_size,idCandidate)
 

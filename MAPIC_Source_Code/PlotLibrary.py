@@ -13,18 +13,15 @@ def plotDataAndShapelet(tree,i,labelValue):
     #value può essere -1 => distanza minore, vado a sx | 1 => distanza maggiore, vado a dx
     fig, ax1 = plt.subplots(1, 1, sharex=True, figsize=(20, 15))
 
-    print('DENTRO PLOT')
-    print(tree.ShapeletDf)
-
-
-    print('\n')
-    print(tree.Shapelet)
+    # print(tree.ShapeletDf)
+    # print('\n')
+    # print(tree.Shapelet)
 
 
     Ts=tree.TsTestForPrint[i]
 
     ax1.plot(np.arange(len(Ts)), Ts, label="Ts",color='b')  # stampo linespace su x e valori data su y (USATO SE NON STAMPO MOTIF/DIS)
-    print('labelValue= '+str(int(labelValue)))
+    #print('labelValue= '+str(int(labelValue)))
     ax1.set_title('b(x) = '+str(int(labelValue)),fontsize=30)
 
     for i in range(tree.counter):

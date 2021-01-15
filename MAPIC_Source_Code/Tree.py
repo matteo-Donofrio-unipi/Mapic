@@ -224,7 +224,7 @@ class Tree:
             nodeInfo.append(entropy)
 
             actualNode.data = nodeInfo
-            actualNode.value = -1
+            actualNode.value = classValue
             actualNode.left = None
             actualNode.right = None
             return
@@ -503,7 +503,7 @@ class Tree:
     #Recursive function, given a pattern, classifies it by exploring the Decision tree
     def treeExplorer(self,pattern, node):
         # caso base, node è foglia
-        if (node.value == -1):
+        if (node.left == None and node.right == None):
             return int(node.data[0])
         else:
             # caso ricorsivo
@@ -517,7 +517,7 @@ class Tree:
     # store the information needed for the plot
     def treeExplorerPrint(self, pattern, node,counter,i):
         # Base case
-        if (node.value == -1):
+        if (node.left == None and node.right == None):
             return int(node.data[0])
         else:
             # recursive case

@@ -11,7 +11,7 @@ def main():
     useValidationSet = False
     usePercentageTrainingSet = True
 
-    datasetName="ArrowHead"
+    datasetName="ECG200"
     nameFile = datasetName + 'TestResults.csv'
 
     executeMAPIC(useValidationSet, usePercentageTrainingSet, datasetName, nameFile)
